@@ -104,7 +104,41 @@ name: rs-basics
  - Raster data
  - Light physics stuff
  - How satellites work
- - Spatial and temporal resolution 
+ - Spatial and temporal resolution
+
+ <!--
+[RM] For light physics stuff, could include how NDVI is made, then just list
+out a bunch of other indices that can be created (beyond course to go in depth
+for other indices, but good to show NDVI because so popular then good to know
+that others exist)
+# https://custom-scripts.sentinel-hub.com/
+ -->
+
+ <!--
+[RM] Maybe we do a slide either here or when we talk about the data catalogue
+# that describes some of the more popular satellite imagery sources with
+# some super basic info about them. Maybe like:
+
+# DAYTIME IMAGERY
+
+| Source      | Resolution | Time Period | Capture imagery every... | N bands |
+| ----------- | ---------- | ----------- | ------------------------ | ------- |
+| Landsat     | 30m         | 1970s- | 2ish weeks             | 8ish?   |
+| Sentinel    | 10m         | 2015/7?- | 2ish weeks           | 8ish?   |
+| MODIS       | 500m         | 2000-        | Daily      | XX |
+
+See resolution vs. capture frequency trade off (MODIS vs landsat/sentinel)
+
+# NIGHTTIME Imagery
+
+| Source      | Resolution | Time Period | Capture imagery every... |
+| ----------- | ---------- | ----------- | ------------------------ |
+| DMSP-OLS     | 1km         | 1992-2013 | Annual             |
+| VIIRS     | 750m         | 2012- | Monthly            |
+
+Or I think both capture daily, but annual / monthly is what GEE provides
+ -->
+
 
 ---
 
@@ -154,13 +188,24 @@ class: inverse, center, middle
 name: data-processing
 
 # Data processing
- 
+
 ---
 
 # Data processing
 
  - Aggregation
  - Clip
+
+<!--
+If time, could also show:
+- Aggregation taking into account cloud cover (ie, avoiding areas with clouds when aggregating)
+But at least should mention that often need to consider cloud cover when aggregating
+- Raster math - maybe make NDVI out of landsat and add NDVI as a band? But may be too much.
+Also NDVI is often precomputed within GEE.
+
+But can see how long things end up being. Staying more basic and just showing
+how to aggregate, clip and export imagery during this session would be super good.
+-->
 
 ---
 
@@ -183,6 +228,34 @@ name: references
 # References and useful resources
 
 
+<!--
+# [RM]
+We can think more about whether something like this would be useful (we briefly)
+discussed when we met). But we can think about making some sort of collection
+of useful scripts, and go over these at the end. Maybe worth us thinking about
+what scripts would be most useful - but could do scripts for:
+- Downloading monthly VIIRS
+- Downloading annual VIIRS
+- Downloading annual DMSP-OLS
+- Downloading NDVI from landsat
+- Downloading NDVI from MODIS
+- Downloading weather data (precipitation / temperature)
+
+So kinda the goal of this training will be to:
+1. Teach people about GEE, so they can do basic stuff on their own
+2. Advertise existing resources, so with this training people should at least
+be comfortable using some pre-packaged scripts that we create
+
+Here's a super unorganized collection of a bunch of scripts I've made, but we
+can create a separate github repo or something, or thing about some way to
+share some resouces: https://code.earthengine.google.com/?accept_repo=users/robmarty3/ieConnectGEE
+
+Maybe one thing to think about is creating a set of functions for aggregating/clipping
+VIIRS/DMSP/NDVI for a country, then seeing if there's a way to source these functions
+into GEE from a github repo.
+-->
+
+
 ---
 
 # References and useful resources
@@ -195,7 +268,7 @@ class: inverse, center, middle
 name: thank-you
 
 # Thank you!
- 
+
 <!-- ---
 
 class: inverse, center, middle
