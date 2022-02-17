@@ -46,14 +46,15 @@ class: center, middle, inverse, title-slide
 
 1. [Introduction to Google Earth Engine](#introduction)
 2. [Initial setup](#setup)
-3. [Remote sensing basics](#rs-basics)
+3. [GIS and Remote sensing basics](#rs-basics)
 4. [Code Editor and APIs](#code-editor)
 5. [Loading data](#data)
 6. [JavaScript and basic operations](#js)
-7. [Data processing](#data-processing)
-8. [Export data](#export)
-9. [References and useful resources](#references)
-9. [Appendix](#appendix)
+7. [Mapping and Visualization](#vis)
+8. [Data processing](#data-processing)
+9. [Export data](#export)
+10. [References and useful resources](#references)
+<!-- 11. [Appendix](#appendix) -->
 
 ---
 
@@ -63,13 +64,27 @@ name: introduction
 # Introduction to Google Earth Engine
 
 ---
-
 # Introduction to Google Earth Engine
 
- - **What?** GIS platform to access, process and analyse RS data. Google giving us amazing stuff for free.
+ - **What?** GIS platform to access, process and analyse raster data. Google giving us amazing stuff for free.
  - **Why?** Easy access to a lot of data plus free cloud resources.
  - **How?** It's the rest of the slides
 
+---
+# Introduction to Google Earth Engine
+<!-- Duplicated to add effect -->
+
+ - **What?** GIS platform to access, process and analyse raster data. Google giving us amazing stuff for free.
+ - **Why?** Easy access to a lot of data plus free cloud resources.
+ - **How?** It's the rest of the slides
+
+<p style="color: red;">
+  Key concepts(?)
+
+  - Supports vector data, but it is optimized for image operations.
+</p>
+
+ 
 ---
 
 class: inverse, center, middle
@@ -95,7 +110,7 @@ Setup:
 class: inverse, center, middle
 name: rs-basics
 
-# Remote sensing basics
+# GIS and Remote sensing basics
 
 
 ---
@@ -263,11 +278,21 @@ name: data-types
 ---
  
 # Data types
- 
- - `ImageCollection`
- - `FeatureCollection`  
- 
- 
+
+GEE has 2 main data types:
+
+- An `Image` is composed of one or more bands and each band has its own name, data type, scale, mask and projection. Images can also have metadata stored as a set of properties.
+
+- A `Feature` is a GeoJSON object. Specifically, a Feature is an object with a geometry property storing a Geometry object (or null) and a properties property storing a dictionary of other properties.
+
+These objects can also be stacked to store more complex data: 
+
+ - `ImageCollection` a stack or sequence of images, e.g. multiple days of image for a same location.
+ - `FeatureCollection` a group of related features, e.g. vector data with multiple geometries. It also used to store tabular data since GEE has no native structured data.
+
+
+
+ .footnote[Source: https://developers.google.com/earth-engine/guides/]
 ---
 
 class: inverse, center, middle
@@ -298,6 +323,23 @@ name: js
  - Debugging (printing objects and metadata)
 
  - Syntax particularities (e.g. no named arguments?)
+
+
+---
+class: inverse, center, middle
+name: vis
+
+# Mapping and Visualization
+
+---
+
+# Mapping and Visualization
+
+GEE offers a quick visualization tool very useful for data exploration and troubleshooting.
+
+- Plot images
+- Plot geometries
+- Inspection tool
 
 ---
 class: inverse, center, middle
@@ -383,15 +425,20 @@ into GEE from a github repo.
 # References and useful resources
 
  - [GEE Beginner's Cookbook](https://developers.google.com/earth-engine/tutorials/community/beginners-cookbook)
+ - [Introduction to JavaScript for Earth Engine](https://developers.google.com/earth-engine/tutorials/tutorial_js_01)
  - https://courses.spatialthoughts.com/end-to-end-gee.html
  - https://developers.google.com/earth-engine/guides/best_practices
 
 ---
 
-class: inverse, center, middle
-name: thank-you
-
 # Thank you!
+
+<br>
+
+&lt;img src="img/werner_projection.jpg" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+---
 
 <!-- ---
 
