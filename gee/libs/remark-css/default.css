@@ -37,9 +37,17 @@ a, a > code {
   float: left;
   width: 47%;
 }
+.pull-left-long {
+  float: left;
+  width: 82%;
+}
 .pull-right {
   float: right;
   width: 47%;
+}
+.pull-right-short {
+  float: right;
+  width: 12%;
 }
 .pull-right + * {
   clear: both;

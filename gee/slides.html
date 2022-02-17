@@ -152,39 +152,64 @@ There are two main types of spatial data: vector and raster data.
 ]
 
 ---
-# GIS basics: Projections
+# GIS basics: Coordinate reference systems
 
-<span style="color:red"> EXPLAIN PROJECTIONS BRIEFLY??</span>
+**Coordinate reference systems (CRS)** map pairs of numbers to a location.
+
+.pull-left-long[
+ - **Geographic Coordinate Systems** live on a sphere; here, the units are in decimal degrees (latitude = angle from equator; longitude = angle from prime meridian)
+    - Using the WGS84 coordinate system the World Bank MC building is located at 38.89 degrees latitude and -77.04 degrees longitude.
+ ]
+.pull-right-short[&lt;img src="img/coordinate_systems_geo.jpg" width="100px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left-long[
+- **Projected Coordinate Systems** project the earth onto a flat surface (units here are typically in meters from some reference point).
+    - Using to the World Mercator projection, the World Bank headquarters (MC building) is located 4680364.64 meters north and -8576320.73 meters east.
+]
+.pull-right-short[&lt;img src="img/coordinate_systems_projected.jpg" width="100px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# GIS basics: [Projections](https://xkcd.com/977/)
+
+
+Projecting the earth onto a flat surface distorts [distorts](http://geoawesomeness.com/5-tools-will-let-master-map-projections/) the earth in some way (shape, area, distance or direction). 
+
+.center[
+&lt;img src="img/projection_unravel.png"  width = 620 / &gt;]
+
 
 ---
 # Remote sensing: Light
 
-Light is electromagnetic radiation and we only see a small fraction of it.
+[Light](https://www.youtube.com/watch?v=jjy-eqWM38g) is electromagnetic radiation and we only see a small fraction of it.
 
 <br><br>
 
 &lt;img src="img/wavelenght-chartpng.png" width="900px" style="display: block; margin: auto;" /&gt;
 
 
-
-
 ---
-# Remote sensing: Light and Bands
+# Remote sensing: Raster Bands
 
 Staellites or remote sensing instruments can see much more!
 
 .pull-left[
-- Generally multiple light spectrums can be accessed in a single product in the form of multiple **raster bands**.
+- Generally multiple light spectrums can be accessed in a single product in the form of multiple [raster bands](https://www.neonscience.org/resources/learning-hub/tutorials/dc-multiband-rasters-r).
 
-- You can thing of bands like columns in a dataset.
-
-- In practice each band is a separate image.
+- In practice each band is a separate image, but they can be combined to form more complex images. For example, color images are composites of red, blue and green bands (RBG).
 
 ]
 
 .pull-right[
 &lt;img src="img/landsat_bands.gif" width="900px" style="display: block; margin: auto;" /&gt;
 ]
+
+<br>
+
+Since raster is just a data format, some products may use bands for storing other types of data as well (e.g. [deforestation](https://developers.google.com/earth-engine/tutorials/tutorial_forest_02)). You can think of bands as variables in a 2D dataset.
+
 
 ---
 # Remote sensing: Light
@@ -350,15 +375,16 @@ name: data-processing
 ---
 
 # Data processing
- 
- - Filtering
- - Masking
- - Mapping
- - Reducing vs aggregation??
- - Aggregation:
-  - Reducers and scale?
- - Clip
- 
+
+Core concepts/operations <span style="color: red;"> (?)</span>:
+- Filter
+- Mask - <span style="color: red;">Using clouds as an example</span> 
+- Clip
+- Map
+- Iterate
+- Reduce - <span style="color: red;">Mention how scale is important</span> 
+- Joins <span style="color: red;"> (?)</span>
+
 
 <!--
 If time, could also show:
@@ -433,10 +459,11 @@ into GEE from a github repo.
 
 # Thank you!
 
-<br>
 
 &lt;img src="img/werner_projection.jpg" width="500px" style="display: block; margin: auto;" /&gt;
 
+
+.footnote[*[Werner projection](https://en.wikipedia.org/wiki/Werner_projection)]
 
 ---
 
