@@ -15,6 +15,11 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/remark-css/default.css" type="text/css" />
@@ -66,23 +71,23 @@ name: introduction
 ---
 # Introduction to Google Earth Engine
 
- - **What?** GIS platform to access, process and analyse raster data. Google giving us amazing stuff for free.
- - **Why?** Easy access to a lot of data plus free cloud resources.
- - **How?** It's the rest of the slides
+<br>
+**What?** 
 
----
-# Introduction to Google Earth Engine
-<!-- Duplicated to add effect -->
+- GIS platform to access, process and analyse raster data. 
+- Google giving us amazing stuff for free.
 
- - **What?** GIS platform to access, process and analyse raster data. Google giving us amazing stuff for free.
- - **Why?** Easy access to a lot of data plus free cloud resources.
- - **How?** It's the rest of the slides
 
-<p style="color: red;">
-  Key concepts(?)
+**Why?** 
 
-  - Supports vector data, but it is optimized for image operations.
-</p>
+- Easy access to data 
+- Powerful cloud resources for free
+
+**How?** 
+
+- It's the rest of the slides
+
+
 
  
 ---
@@ -93,18 +98,21 @@ name: setup
 # Initial setup
 
 ---
-
-# Initial setup
+# Initial setup: 
 
 Course requirements:
+- Basic understanding of GIS concepts (we will review briefly).
+- Basic programming knowledge.
 
-- Basic understanding of GIS concepts
-- Basic programming knowledge
-
-Setup:
+Requirements:
  - Google account
- - Google Drive
+ - Google Drive free account
 
+Set-up:
+
+- Go to this [URL](https://developers.google.com/earth-engine/cloud/earthengine_cloud_project_setup)
+- Apply in advance!
+- No need to create a cloud project <font style="color:red"> I think</font>
 ---
 
 class: inverse, center, middle
@@ -182,12 +190,22 @@ Projecting the earth onto a flat surface distorts [distorts](http://geoawesomene
 ---
 # Remote sensing: basics
 
-Defintions
+<br><br><br>
 
-Staellites and sensors
+.blockquote[
+Remote sensing is the acquisition of information about an object or phenomenon without making physical contact with the object, in contrast to in situ or on-site observation.
+]
 
-Passive vs active
+- But generally we mean satellites!
+- satellites can be passive or active
 
+<font style="color:red"> Image here</font>
+
+- In this course we wil mostly focus on passive satellites for simplicity.
+
+.footnote[
+https://en.wikipedia.org/wiki/Remote_sensing
+]
 ---
 # Remote sensing: Light
 
@@ -220,9 +238,22 @@ Since raster is just a data format, some products may use bands for storing othe
 
 
 ---
-# Remote sensing: Light
+# Remote sensing: [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) example
 
-<span style="color:red"> NDVI example </span>
+Normalized difference vegetation index (NDVI) is proxy of vegetation in an image. 
+- It measures the difference between near-infrared (which vegetation strongly reflects) and red light (which vegetation absorbs).
+- It ranges from -1 to 1
+- Applications range from tracking deforestation to crop health in precision agriculture.
+
+<p>
+
+  \[
+  NDVI = {(NIR - Red) \over (NIR  + Red)}
+  
+  \]
+</p>
+
+<p style="color:red"> Add images example here</p>
 
 <!-- [RM] For light physics stuff, could include how NDVI is made, then just list
 out a bunch of other indices that can be created (beyond course to go in depth
@@ -241,9 +272,21 @@ On top of we can have two more dimetions to raster data:
  &lt;img src="img/raster_multiple_resolutions.png" width="600px" alt="https://www.neonscience.org/resources/learning-hub/tutorials/raster-res-extent-pixels-r" style="display: block; margin: auto;" /&gt;
 
 <br>
- - **Temporal resolution**: How often do we have images for a each location.
+ - **Temporal resolution**: How often do we have images for a each location (revisit time).
  &lt;img src="img/raster_temporal_resolutions.png" width="700px" alt="https://openeo.org/documentation/1.0/datacubes.html" style="display: block; margin: auto;" /&gt;
 
+---
+ # Remote sensing: Resolution (2)
+
+ 
+ - ** [Spectral resolution](https://gisgeography.com/spatial-resolution-vs-spectral-resolution/) ** - Spectral resolution describes the amount of spectral detail in a band. For example, a multispectral image breaks light into 4 to 36 bands. Then, it assigns those bands names such as red, green, blue, and near-infrared. Each band may span 0.05 um in the electromagnetic spectrum.
+ 
+- **[Radiometric resolution](https://www.nrcan.gc.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/radiometric-resolution/9379)**  - The radiometric resolution of an imaging system describes its ability to discriminate very slight differences in energy The finer the radiometric resolution of a sensor, the more sensitive it is to detecting small differences in reflected or emitted energy.
+
+- **[Sawth resolution](https://www.nrcan.gc.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283)**  - As a satellite revolves around the Earth, the sensor "sees" a certain portion of the Earth's surface. The area imaged on the surface, is referred to as the swath. Imaging swaths for spaceborne sensors generally vary between tens and hundreds of kilometres wide.
+
+
+ 
 ---
 # Remonte sensing: Data processing levels
 
@@ -267,7 +310,7 @@ On top of we can have two more dimetions to raster data:
 
 ]
 
----
+<!-- ---
 
 # Remote sensing: Data examples
 
@@ -290,10 +333,9 @@ GEE has an extensive data catalog. Below we can find a couple of examples
  | DMSP-OLS    | 1km        | 1992-2013   | Annual             |
  | VIIRS       | 750m       | 2012-       | Monthly            |
  
- Or I think both capture daily, but annual / monthly is what GEE provides
- 
----
+ Or I think both capture daily, but annual / monthly is what GEE provides -->
 
+---
 class: inverse, center, middle
 name: code-editor
 
@@ -316,7 +358,12 @@ We will focus on the JavaScript tool that provides a web based environment for t
 ---
 # Code Editor
 
-<span style="color:red">CODE EDITOR IMAGE LIKE R TRAINING HERE</span>
+&lt;img src="img/Code_editor_diagram.png" width="900px" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+https://developers.google.com/earth-engine/guides/playground
+]
+
 
 ---
 
